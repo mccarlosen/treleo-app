@@ -1,0 +1,12 @@
+<div class="w-full rounded p-3 shadow-md" [ngClass]="{'bg-gray-100': (task.status == 'Pendiente'), 'bg-orange-200': (task.status == 'En progreso'), 'bg-green-200': (task.status == 'Completado')}">
+	<div class="font-semibold mb-2">{{ task.title }}</div>
+	<div class="text-xs font-light mb-3">{{ task.description }}</div>
+	<div class="flex items-center justify-between">
+		<div class="text-xs font-normal">
+			[12/11/2023]
+		</div>
+		<button class="btn-primary" *ngIf="task.status == 'Pendiente'">Comenzar</button>
+		<button class="btn-primary" *ngIf="task.status == 'En progreso'">Completar</button>
+		<button class="btn-primary" *ngIf="task.status == 'Completado'">Archivar</button>
+	</div>
+</div>

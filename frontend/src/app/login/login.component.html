@@ -1,0 +1,34 @@
+<div class="flex flex-col items-center justify-center min-h-screen">
+	<div class="mb-8 max-w-[280px]">
+		<h1 class="text-4xl font-bold text-center">Bienvenido a Treleo App</h1>
+	</div>
+	<div class="w-[380px] rounded-lg bg-white p-6">
+		<div class="text-xl font-bold mb-8">Iniciar Sesión</div>
+		<div *ngIf="generalError || generalErrorList.length" class="w-full p-4 rounded bg-red-800 text-white text-xs mb-4">
+			<p *ngIf="generalError">{{ generalError }}</p>
+			<p *ngFor="let error of generalErrorList" >{{ error }}</p>
+		</div>
+		<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+			<div class="flex flex-col space-y-5 mb-4">
+				<div class="flex flex-col space-y-1">
+					<label class="text-sm" for="username">Correo electrónico</label>
+					<input formControlName="username" type="email" placeholder="Escriba su correo..." id="username" class="input-field" autocomplete="on">
+					<div *ngIf="username?.invalid && (username?.dirty || username?.touched)" class="p-1">
+						<p *ngIf="username?.errors?.['required']" class="text-xs text-red-800 font-normal">El correo electrónico es requerido</p>
+						<p *ngIf="username?.errors?.['email']" class="text-xs text-red-800 font-normal">El correo electrónico es inválido</p>
+					</div>
+				</div>
+				<div class="flex flex-col space-y-1">
+					<label class="text-sm" for="password">Contraseña</label>
+					<input formControlName="password" type="password" placeholder="Escriba su contraseña..." id="password" class="input-field" autocomplete="on">
+					<div *ngIf="password?.invalid && (password?.dirty || password?.touched)" class="p-1">
+						<p *ngIf="password?.errors?.['required']" class="text-xs text-red-800 font-normal">La contraseña es requerida</p>
+					</div>
+				</div>
+			</div>
+			<div class="flex">
+				<button [disabled]="loading === true" class="w-full py-2 px-4 text-center text-white bg-[#319470] rounded transition duration-150 hover:bg-secondary-600 active:bg-[#319470]" [ngClass]="{'pointer-events-none opacity-70': !loginForm.valid}">Ingresar</button>
+			</div>
+		</form>
+	</div>
+</div>

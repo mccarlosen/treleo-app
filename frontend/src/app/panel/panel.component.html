@@ -1,0 +1,23 @@
+<div class="w-full min-h-full">
+	<div class="w-full py-4 bg-white shadow mb-10">
+		<div class="max-w-4xl mx-auto">
+			<div class="w-full flex justify-between">
+				<!-- logo -->
+				<div class="logo">Treleo App</div>
+				<div class="flex items-center space-x-4 divide-x">
+					<ng-container *ngIf="user$ | async as user">
+						<div class="text-gray-500">
+							Hola, {{ user.firstname }}
+						</div>
+					</ng-container>
+					<!-- buttons -->
+					<nav class="flex space-x-4 pl-4">
+						<a [routerLink]="['/projects']" routerLinkActive="nav-link-active" class="nav-link">Proyectos</a>
+						<a (click)="logout()" class="nav-link">Salir</a>
+					</nav>
+				</div>
+			</div>
+		</div>
+	</div>
+	<router-outlet></router-outlet>
+</div>
